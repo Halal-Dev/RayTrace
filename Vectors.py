@@ -1,3 +1,6 @@
+from cmath import sqrt
+
+
 class Vector3D:
     def __init__(self,x,y,z) -> None:
         self.x = x
@@ -14,9 +17,11 @@ class Vector3D:
             #return Vector3D(self.x * other.x, self.y * other.y, self.z * other.z)
     def __truediv__(self, other):
         if type(other) == int:
-            return Vector2D(self.x / other, self.y / other)
+            return Vector3D(self.x / other, self.y / other, self.z / other)
     def __repr__(self) -> str:
         return f"Vector3D x:{self.x} y:{self.y} z:{self.z}"
+    def magnitude(self):
+        return sqrt(pow(self.x, 2) + pow(self.y, 2) + pow(self.z, 2))
     
 class Vector2D:
     def __init__(self,x,y) -> None:
@@ -38,11 +43,12 @@ class Vector2D:
             return Vector2D(self.x / other, self.y / other)
     def __repr__(self) -> str:
         return f"Vector2D x:{self.x} y:{self.y}"
-    
+    def magnitude(self):
+        return sqrt(pow(self.x, 2) + pow(self.y, 2))
 if __name__ == "__main__":
     vec1 = Vector2D(2,0)
     vec2 = Vector2D(2,-2)
     vec3 = Vector2D(0,2)
-    vec4 = Vector3D(2,4,9)
-    print(vec1 / 2)
+    vec4 = Vector3D(1,-2,-2)
+    print(vec4.magnitude())
     
